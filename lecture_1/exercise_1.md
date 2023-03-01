@@ -1,4 +1,5 @@
-### Exercise 1
+# Interface Design
+## Exercise 1
 * Consider a service for concurrently sharing a set of printers from a pool for several users (all printers are equal). Define an appropriate interface (for instance using Python-like oder C-like pseudocode) for such a service so that the openness requirements are satistified
 * Assume that the channel is secure.
 
