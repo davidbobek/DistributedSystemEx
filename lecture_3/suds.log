@@ -1,0 +1,407 @@
+DEBUG:suds.transport.http:opening (http://localhost:7789/?wsdl)
+DEBUG:suds.transport.http:opening (http://localhost:2452/?wsdl)
+DEBUG:suds.client:sending to (http://localhost:2452/)
+message:
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="ds_examples.soap.hello">
+   <SOAP-ENV:Header/>
+   <ns0:Body>
+      <ns1:say_hello>
+         <ns1:name>David</ns1:name>
+      </ns1:say_hello>
+   </ns0:Body>
+</SOAP-ENV:Envelope>
+DEBUG:suds.client:headers = {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"say_hello"'}
+DEBUG:suds.transport.http:sending:
+URL: http://localhost:2452/
+HEADERS: {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"say_hello"', 'Content-type': 'text/xml; charset=utf-8', 'Soapaction': b'"say_hello"'}
+MESSAGE:
+<?xml version="1.0" encoding="UTF-8"?><SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="ds_examples.soap.hello"><SOAP-ENV:Header/><ns0:Body><ns1:say_hello><ns1:name>David</ns1:name></ns1:say_hello></ns0:Body></SOAP-ENV:Envelope>
+DEBUG:suds.transport.http:opening (http://localhost:2452/?wsdl)
+DEBUG:suds.client:sending to (http://localhost:2452/)
+message:
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="ds_examples.soap.hello" xmlns:ns1="http://schemas.xmlsoap.org/soap/envelope/">
+   <SOAP-ENV:Header/>
+   <ns1:Body>
+      <ns0:say_hello>
+         <ns0:name>David</ns0:name>
+      </ns0:say_hello>
+   </ns1:Body>
+</SOAP-ENV:Envelope>
+DEBUG:suds.client:headers = {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"say_hello"'}
+DEBUG:suds.transport.http:sending:
+URL: http://localhost:2452/
+HEADERS: {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"say_hello"', 'Content-type': 'text/xml; charset=utf-8', 'Soapaction': b'"say_hello"'}
+MESSAGE:
+<?xml version="1.0" encoding="UTF-8"?><SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="ds_examples.soap.hello" xmlns:ns1="http://schemas.xmlsoap.org/soap/envelope/"><SOAP-ENV:Header/><ns1:Body><ns0:say_hello><ns0:name>David</ns0:name></ns0:say_hello></ns1:Body></SOAP-ENV:Envelope>
+DEBUG:suds.transport.http:received:
+CODE: 200
+HEADERS: Date: Wed, 22 Mar 2023 12:39:14 GMT
+Server: WSGIServer/0.2 CPython/3.11.0
+Content-Type: text/xml; charset=utf-8
+Content-Length: 311
+
+
+MESSAGE:
+<?xml version='1.0' encoding='UTF-8'?>
+<soap11env:Envelope xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="ds_examples.soap.hello"><soap11env:Body><tns:say_helloResponse><tns:say_helloResult>Hello, David!</tns:say_helloResult></tns:say_helloResponse></soap11env:Body></soap11env:Envelope>
+DEBUG:suds.client:Reply HTTP status - 200
+b'<?xml version=\'1.0\' encoding=\'UTF-8\'?>\n<soap11env:Envelope xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="ds_examples.soap.hello"><soap11env:Body><tns:say_helloResponse><tns:say_helloResult>Hello, David!</tns:say_helloResult></tns:say_helloResponse></soap11env:Body></soap11env:Envelope>'
+DEBUG:suds.transport.http:opening (http://localhost:2452/?wsdl)
+DEBUG:suds.client:sending to (http://localhost:2452/)
+message:
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="ds_examples.soap.hello" xmlns:ns1="http://schemas.xmlsoap.org/soap/envelope/">
+   <SOAP-ENV:Header/>
+   <ns1:Body>
+      <ns0:say_hello>
+         <ns0:name>David</ns0:name>
+      </ns0:say_hello>
+   </ns1:Body>
+</SOAP-ENV:Envelope>
+DEBUG:suds.client:headers = {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"say_hello"'}
+DEBUG:suds.transport.http:sending:
+URL: http://localhost:2452/
+HEADERS: {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"say_hello"', 'Content-type': 'text/xml; charset=utf-8', 'Soapaction': b'"say_hello"'}
+MESSAGE:
+<?xml version="1.0" encoding="UTF-8"?><SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="ds_examples.soap.hello" xmlns:ns1="http://schemas.xmlsoap.org/soap/envelope/"><SOAP-ENV:Header/><ns1:Body><ns0:say_hello><ns0:name>David</ns0:name></ns0:say_hello></ns1:Body></SOAP-ENV:Envelope>
+DEBUG:suds.transport.http:received:
+CODE: 200
+HEADERS: Date: Wed, 22 Mar 2023 12:40:05 GMT
+Server: WSGIServer/0.2 CPython/3.11.0
+Content-Type: text/xml; charset=utf-8
+Content-Length: 311
+
+
+MESSAGE:
+<?xml version='1.0' encoding='UTF-8'?>
+<soap11env:Envelope xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="ds_examples.soap.hello"><soap11env:Body><tns:say_helloResponse><tns:say_helloResult>Hello, David!</tns:say_helloResult></tns:say_helloResponse></soap11env:Body></soap11env:Envelope>
+DEBUG:suds.client:Reply HTTP status - 200
+b'<?xml version=\'1.0\' encoding=\'UTF-8\'?>\n<soap11env:Envelope xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="ds_examples.soap.hello"><soap11env:Body><tns:say_helloResponse><tns:say_helloResult>Hello, David!</tns:say_helloResult></tns:say_helloResponse></soap11env:Body></soap11env:Envelope>'
+DEBUG:suds.transport.http:opening (http://localhost:2452/?wsdl)
+DEBUG:suds.transport.http:opening (http://localhost:2452/?wsdl)
+DEBUG:suds.transport.http:opening (http://localhost:2452/?wsdl)
+DEBUG:suds.transport.http:opening (http://localhost:2452/?wsdl)
+DEBUG:suds.transport.http:opening (http://localhost:2452/?wsdl)
+DEBUG:suds.client:sending to (http://localhost:2452/)
+message:
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="ds_examples.soap.hello" xmlns:ns1="http://schemas.xmlsoap.org/soap/envelope/">
+   <SOAP-ENV:Header/>
+   <ns1:Body>
+      <ns0:say_hello>
+         <ns0:name>fg</ns0:name>
+      </ns0:say_hello>
+   </ns1:Body>
+</SOAP-ENV:Envelope>
+DEBUG:suds.client:headers = {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"say_hello"'}
+DEBUG:suds.transport.http:sending:
+URL: http://localhost:2452/
+HEADERS: {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"say_hello"', 'Content-type': 'text/xml; charset=utf-8', 'Soapaction': b'"say_hello"'}
+MESSAGE:
+<?xml version="1.0" encoding="UTF-8"?><SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="ds_examples.soap.hello" xmlns:ns1="http://schemas.xmlsoap.org/soap/envelope/"><SOAP-ENV:Header/><ns1:Body><ns0:say_hello><ns0:name>fg</ns0:name></ns0:say_hello></ns1:Body></SOAP-ENV:Envelope>
+DEBUG:suds.transport.http:received:
+CODE: 200
+HEADERS: Date: Wed, 22 Mar 2023 13:04:53 GMT
+Server: WSGIServer/0.2 CPython/3.11.0
+Content-Type: text/xml; charset=utf-8
+Content-Length: 308
+
+
+MESSAGE:
+<?xml version='1.0' encoding='UTF-8'?>
+<soap11env:Envelope xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="ds_examples.soap.hello"><soap11env:Body><tns:say_helloResponse><tns:say_helloResult>Hello, fg!</tns:say_helloResult></tns:say_helloResponse></soap11env:Body></soap11env:Envelope>
+DEBUG:suds.client:Reply HTTP status - 200
+b'<?xml version=\'1.0\' encoding=\'UTF-8\'?>\n<soap11env:Envelope xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="ds_examples.soap.hello"><soap11env:Body><tns:say_helloResponse><tns:say_helloResult>Hello, fg!</tns:say_helloResult></tns:say_helloResponse></soap11env:Body></soap11env:Envelope>'
+DEBUG:suds.transport.http:opening (http://localhost:2452/?wsdl)
+DEBUG:suds.client:sending to (http://localhost:2452/)
+message:
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="ds_examples.soap.hello" xmlns:ns1="http://schemas.xmlsoap.org/soap/envelope/">
+   <SOAP-ENV:Header/>
+   <ns1:Body>
+      <ns0:fibonacci_number>
+         <ns0:number>5</ns0:number>
+      </ns0:fibonacci_number>
+   </ns1:Body>
+</SOAP-ENV:Envelope>
+DEBUG:suds.client:headers = {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"fibonacci_number"'}
+DEBUG:suds.transport.http:sending:
+URL: http://localhost:2452/
+HEADERS: {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"fibonacci_number"', 'Content-type': 'text/xml; charset=utf-8', 'Soapaction': b'"fibonacci_number"'}
+MESSAGE:
+<?xml version="1.0" encoding="UTF-8"?><SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="ds_examples.soap.hello" xmlns:ns1="http://schemas.xmlsoap.org/soap/envelope/"><SOAP-ENV:Header/><ns1:Body><ns0:fibonacci_number><ns0:number>5</ns0:number></ns0:fibonacci_number></ns1:Body></SOAP-ENV:Envelope>
+DEBUG:suds.client:Reply HTTP status - 500 - Internal Server Error
+b'<?xml version=\'1.0\' encoding=\'UTF-8\'?>\n<soap11env:Envelope xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/"><soap11env:Body><soap11env:Fault><faultcode>soap11env:Server</faultcode><faultstring>Internal Error</faultstring><faultactor></faultactor></soap11env:Fault></soap11env:Body></soap11env:Envelope>'
+DEBUG:suds.transport.http:opening (http://localhost:2452/?wsdl)
+DEBUG:suds.client:sending to (http://localhost:2452/)
+message:
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="ds_examples.soap.hello">
+   <SOAP-ENV:Header/>
+   <ns0:Body>
+      <ns1:fibonacci_number>
+         <ns1:number>5</ns1:number>
+      </ns1:fibonacci_number>
+   </ns0:Body>
+</SOAP-ENV:Envelope>
+DEBUG:suds.client:headers = {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"fibonacci_number"'}
+DEBUG:suds.transport.http:sending:
+URL: http://localhost:2452/
+HEADERS: {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"fibonacci_number"', 'Content-type': 'text/xml; charset=utf-8', 'Soapaction': b'"fibonacci_number"'}
+MESSAGE:
+<?xml version="1.0" encoding="UTF-8"?><SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="ds_examples.soap.hello"><SOAP-ENV:Header/><ns0:Body><ns1:fibonacci_number><ns1:number>5</ns1:number></ns1:fibonacci_number></ns0:Body></SOAP-ENV:Envelope>
+DEBUG:suds.client:Reply HTTP status - 500 - Internal Server Error
+b'<?xml version=\'1.0\' encoding=\'UTF-8\'?>\n<soap11env:Envelope xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/"><soap11env:Body><soap11env:Fault><faultcode>soap11env:Server</faultcode><faultstring>Internal Error</faultstring><faultactor></faultactor></soap11env:Fault></soap11env:Body></soap11env:Envelope>'
+DEBUG:suds.transport.http:opening (http://localhost:2452/?wsdl)
+DEBUG:suds.client:sending to (http://localhost:2452/)
+message:
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="ds_examples.soap.hello" xmlns:ns1="http://schemas.xmlsoap.org/soap/envelope/">
+   <SOAP-ENV:Header/>
+   <ns1:Body>
+      <ns0:fibonacci_number>
+         <ns0:number>5</ns0:number>
+      </ns0:fibonacci_number>
+   </ns1:Body>
+</SOAP-ENV:Envelope>
+DEBUG:suds.client:headers = {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"fibonacci_number"'}
+DEBUG:suds.transport.http:sending:
+URL: http://localhost:2452/
+HEADERS: {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"fibonacci_number"', 'Content-type': 'text/xml; charset=utf-8', 'Soapaction': b'"fibonacci_number"'}
+MESSAGE:
+<?xml version="1.0" encoding="UTF-8"?><SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="ds_examples.soap.hello" xmlns:ns1="http://schemas.xmlsoap.org/soap/envelope/"><SOAP-ENV:Header/><ns1:Body><ns0:fibonacci_number><ns0:number>5</ns0:number></ns0:fibonacci_number></ns1:Body></SOAP-ENV:Envelope>
+DEBUG:suds.client:Reply HTTP status - 500 - Internal Server Error
+b'<?xml version=\'1.0\' encoding=\'UTF-8\'?>\n<soap11env:Envelope xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/"><soap11env:Body><soap11env:Fault><faultcode>soap11env:Server</faultcode><faultstring>Internal Error</faultstring><faultactor></faultactor></soap11env:Fault></soap11env:Body></soap11env:Envelope>'
+DEBUG:suds.transport.http:opening (http://localhost:2452/?wsdl)
+DEBUG:suds.client:sending to (http://localhost:2452/)
+message:
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="ds_examples.soap.hello">
+   <SOAP-ENV:Header/>
+   <ns0:Body>
+      <ns1:fibonacci_number>
+         <ns1:number>4</ns1:number>
+      </ns1:fibonacci_number>
+   </ns0:Body>
+</SOAP-ENV:Envelope>
+DEBUG:suds.client:headers = {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"fibonacci_number"'}
+DEBUG:suds.transport.http:sending:
+URL: http://localhost:2452/
+HEADERS: {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"fibonacci_number"', 'Content-type': 'text/xml; charset=utf-8', 'Soapaction': b'"fibonacci_number"'}
+MESSAGE:
+<?xml version="1.0" encoding="UTF-8"?><SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="ds_examples.soap.hello"><SOAP-ENV:Header/><ns0:Body><ns1:fibonacci_number><ns1:number>4</ns1:number></ns1:fibonacci_number></ns0:Body></SOAP-ENV:Envelope>
+DEBUG:suds.client:Reply HTTP status - 500 - Internal Server Error
+b'<?xml version=\'1.0\' encoding=\'UTF-8\'?>\n<soap11env:Envelope xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/"><soap11env:Body><soap11env:Fault><faultcode>soap11env:Server</faultcode><faultstring>Internal Error</faultstring><faultactor></faultactor></soap11env:Fault></soap11env:Body></soap11env:Envelope>'
+DEBUG:suds.transport.http:opening (http://localhost:2452/?wsdl)
+DEBUG:suds.client:sending to (http://localhost:2452/)
+message:
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="ds_examples.soap.hello" xmlns:ns1="http://schemas.xmlsoap.org/soap/envelope/">
+   <SOAP-ENV:Header/>
+   <ns1:Body>
+      <ns0:fibonacci_number>
+         <ns0:number>4</ns0:number>
+      </ns0:fibonacci_number>
+   </ns1:Body>
+</SOAP-ENV:Envelope>
+DEBUG:suds.client:headers = {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"fibonacci_number"'}
+DEBUG:suds.transport.http:sending:
+URL: http://localhost:2452/
+HEADERS: {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"fibonacci_number"', 'Content-type': 'text/xml; charset=utf-8', 'Soapaction': b'"fibonacci_number"'}
+MESSAGE:
+<?xml version="1.0" encoding="UTF-8"?><SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="ds_examples.soap.hello" xmlns:ns1="http://schemas.xmlsoap.org/soap/envelope/"><SOAP-ENV:Header/><ns1:Body><ns0:fibonacci_number><ns0:number>4</ns0:number></ns0:fibonacci_number></ns1:Body></SOAP-ENV:Envelope>
+DEBUG:suds.client:Reply HTTP status - 500 - Internal Server Error
+b'<?xml version=\'1.0\' encoding=\'UTF-8\'?>\n<soap11env:Envelope xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/"><soap11env:Body><soap11env:Fault><faultcode>soap11env:Server</faultcode><faultstring>Internal Error</faultstring><faultactor></faultactor></soap11env:Fault></soap11env:Body></soap11env:Envelope>'
+DEBUG:suds.transport.http:opening (http://localhost:2452/?wsdl)
+DEBUG:suds.client:sending to (http://localhost:2452/)
+message:
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="ds_examples.soap.hello">
+   <SOAP-ENV:Header/>
+   <ns0:Body>
+      <ns1:fibonacci_number>
+         <ns1:number>4</ns1:number>
+      </ns1:fibonacci_number>
+   </ns0:Body>
+</SOAP-ENV:Envelope>
+DEBUG:suds.client:headers = {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"fibonacci_number"'}
+DEBUG:suds.transport.http:sending:
+URL: http://localhost:2452/
+HEADERS: {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"fibonacci_number"', 'Content-type': 'text/xml; charset=utf-8', 'Soapaction': b'"fibonacci_number"'}
+MESSAGE:
+<?xml version="1.0" encoding="UTF-8"?><SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="ds_examples.soap.hello"><SOAP-ENV:Header/><ns0:Body><ns1:fibonacci_number><ns1:number>4</ns1:number></ns1:fibonacci_number></ns0:Body></SOAP-ENV:Envelope>
+DEBUG:suds.transport.http:opening (http://localhost:2452/?wsdl)
+DEBUG:suds.client:sending to (http://localhost:2452/)
+message:
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="ds_examples.soap.hello" xmlns:ns1="http://schemas.xmlsoap.org/soap/envelope/">
+   <SOAP-ENV:Header/>
+   <ns1:Body>
+      <ns0:fibonacci_number>
+         <ns0:number>4</ns0:number>
+      </ns0:fibonacci_number>
+   </ns1:Body>
+</SOAP-ENV:Envelope>
+DEBUG:suds.client:headers = {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"fibonacci_number"'}
+DEBUG:suds.transport.http:sending:
+URL: http://localhost:2452/
+HEADERS: {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"fibonacci_number"', 'Content-type': 'text/xml; charset=utf-8', 'Soapaction': b'"fibonacci_number"'}
+MESSAGE:
+<?xml version="1.0" encoding="UTF-8"?><SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="ds_examples.soap.hello" xmlns:ns1="http://schemas.xmlsoap.org/soap/envelope/"><SOAP-ENV:Header/><ns1:Body><ns0:fibonacci_number><ns0:number>4</ns0:number></ns0:fibonacci_number></ns1:Body></SOAP-ENV:Envelope>
+DEBUG:suds.client:Reply HTTP status - 500 - Internal Server Error
+b'<?xml version=\'1.0\' encoding=\'UTF-8\'?>\n<soap11env:Envelope xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/"><soap11env:Body><soap11env:Fault><faultcode>soap11env:Server</faultcode><faultstring>Internal Error</faultstring><faultactor></faultactor></soap11env:Fault></soap11env:Body></soap11env:Envelope>'
+DEBUG:suds.transport.http:opening (http://localhost:2452/?wsdl)
+DEBUG:suds.client:sending to (http://localhost:2452/)
+message:
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="ds_examples.soap.hello" xmlns:ns1="http://schemas.xmlsoap.org/soap/envelope/">
+   <SOAP-ENV:Header/>
+   <ns1:Body>
+      <ns0:fibonacci_number>
+         <ns0:number>4</ns0:number>
+      </ns0:fibonacci_number>
+   </ns1:Body>
+</SOAP-ENV:Envelope>
+DEBUG:suds.client:headers = {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"fibonacci_number"'}
+DEBUG:suds.transport.http:sending:
+URL: http://localhost:2452/
+HEADERS: {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"fibonacci_number"', 'Content-type': 'text/xml; charset=utf-8', 'Soapaction': b'"fibonacci_number"'}
+MESSAGE:
+<?xml version="1.0" encoding="UTF-8"?><SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="ds_examples.soap.hello" xmlns:ns1="http://schemas.xmlsoap.org/soap/envelope/"><SOAP-ENV:Header/><ns1:Body><ns0:fibonacci_number><ns0:number>4</ns0:number></ns0:fibonacci_number></ns1:Body></SOAP-ENV:Envelope>
+DEBUG:suds.client:Reply HTTP status - 500 - Internal Server Error
+b'<?xml version=\'1.0\' encoding=\'UTF-8\'?>\n<soap11env:Envelope xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/"><soap11env:Body><soap11env:Fault><faultcode>soap11env:Server</faultcode><faultstring>Internal Error</faultstring><faultactor></faultactor></soap11env:Fault></soap11env:Body></soap11env:Envelope>'
+DEBUG:suds.transport.http:opening (http://localhost:2452/?wsdl)
+DEBUG:suds.client:sending to (http://localhost:2452/)
+message:
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="ds_examples.soap.hello">
+   <SOAP-ENV:Header/>
+   <ns0:Body>
+      <ns1:fibonacci_number>
+         <ns1:number>4</ns1:number>
+      </ns1:fibonacci_number>
+   </ns0:Body>
+</SOAP-ENV:Envelope>
+DEBUG:suds.client:headers = {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"fibonacci_number"'}
+DEBUG:suds.transport.http:sending:
+URL: http://localhost:2452/
+HEADERS: {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"fibonacci_number"', 'Content-type': 'text/xml; charset=utf-8', 'Soapaction': b'"fibonacci_number"'}
+MESSAGE:
+<?xml version="1.0" encoding="UTF-8"?><SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="ds_examples.soap.hello"><SOAP-ENV:Header/><ns0:Body><ns1:fibonacci_number><ns1:number>4</ns1:number></ns1:fibonacci_number></ns0:Body></SOAP-ENV:Envelope>
+DEBUG:suds.client:Reply HTTP status - 500 - Internal Server Error
+b'<?xml version=\'1.0\' encoding=\'UTF-8\'?>\n<soap11env:Envelope xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/"><soap11env:Body><soap11env:Fault><faultcode>soap11env:Server</faultcode><faultstring>Internal Error</faultstring><faultactor></faultactor></soap11env:Fault></soap11env:Body></soap11env:Envelope>'
+DEBUG:suds.transport.http:opening (http://localhost:2452/?wsdl)
+DEBUG:suds.client:sending to (http://localhost:2452/)
+message:
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="ds_examples.soap.hello">
+   <SOAP-ENV:Header/>
+   <ns0:Body>
+      <ns1:fibonacci_number>
+         <ns1:number>4</ns1:number>
+      </ns1:fibonacci_number>
+   </ns0:Body>
+</SOAP-ENV:Envelope>
+DEBUG:suds.client:headers = {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"fibonacci_number"'}
+DEBUG:suds.transport.http:sending:
+URL: http://localhost:2452/
+HEADERS: {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"fibonacci_number"', 'Content-type': 'text/xml; charset=utf-8', 'Soapaction': b'"fibonacci_number"'}
+MESSAGE:
+<?xml version="1.0" encoding="UTF-8"?><SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="ds_examples.soap.hello"><SOAP-ENV:Header/><ns0:Body><ns1:fibonacci_number><ns1:number>4</ns1:number></ns1:fibonacci_number></ns0:Body></SOAP-ENV:Envelope>
+DEBUG:suds.client:Reply HTTP status - 500 - Internal Server Error
+b'<?xml version=\'1.0\' encoding=\'UTF-8\'?>\n<soap11env:Envelope xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/"><soap11env:Body><soap11env:Fault><faultcode>soap11env:Server</faultcode><faultstring>Internal Error</faultstring><faultactor></faultactor></soap11env:Fault></soap11env:Body></soap11env:Envelope>'
+DEBUG:suds.transport.http:opening (http://localhost:2452/?wsdl)
+DEBUG:suds.client:sending to (http://localhost:2452/)
+message:
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="ds_examples.soap.hello" xmlns:ns1="http://schemas.xmlsoap.org/soap/envelope/">
+   <SOAP-ENV:Header/>
+   <ns1:Body>
+      <ns0:fibonacci_number>
+         <ns0:number>4</ns0:number>
+      </ns0:fibonacci_number>
+   </ns1:Body>
+</SOAP-ENV:Envelope>
+DEBUG:suds.client:headers = {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"fibonacci_number"'}
+DEBUG:suds.transport.http:sending:
+URL: http://localhost:2452/
+HEADERS: {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"fibonacci_number"', 'Content-type': 'text/xml; charset=utf-8', 'Soapaction': b'"fibonacci_number"'}
+MESSAGE:
+<?xml version="1.0" encoding="UTF-8"?><SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="ds_examples.soap.hello" xmlns:ns1="http://schemas.xmlsoap.org/soap/envelope/"><SOAP-ENV:Header/><ns1:Body><ns0:fibonacci_number><ns0:number>4</ns0:number></ns0:fibonacci_number></ns1:Body></SOAP-ENV:Envelope>
+DEBUG:suds.transport.http:received:
+CODE: 200
+HEADERS: Date: Wed, 22 Mar 2023 13:14:00 GMT
+Server: WSGIServer/0.2 CPython/3.11.0
+Content-Type: text/xml; charset=utf-8
+Content-Length: 819
+
+
+MESSAGE:
+<?xml version='1.0' encoding='UTF-8'?>
+<soap11env:Envelope xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:plink="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:wsdlsoap11="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdlsoap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap11enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap12env="http://www.w3.org/2003/05/soap-envelope" xmlns:soap12enc="http://www.w3.org/2003/05/soap-encoding" xmlns:wsa="http://schemas.xmlsoap.org/ws/2003/03/addressing" xmlns:xop="http://www.w3.org/2004/08/xop/include" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="ds_examples.soap.hello"/>
+DEBUG:suds.client:Reply HTTP status - 200
+b'<?xml version=\'1.0\' encoding=\'UTF-8\'?>\n<soap11env:Envelope xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:plink="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:wsdlsoap11="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdlsoap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap11enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap12env="http://www.w3.org/2003/05/soap-envelope" xmlns:soap12enc="http://www.w3.org/2003/05/soap-encoding" xmlns:wsa="http://schemas.xmlsoap.org/ws/2003/03/addressing" xmlns:xop="http://www.w3.org/2004/08/xop/include" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="ds_examples.soap.hello"/>'
+DEBUG:suds.transport.http:opening (http://localhost:2452/?wsdl)
+DEBUG:suds.client:sending to (http://localhost:2452/)
+message:
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="ds_examples.soap.hello" xmlns:ns1="http://schemas.xmlsoap.org/soap/envelope/">
+   <SOAP-ENV:Header/>
+   <ns1:Body>
+      <ns0:fibonacci_number>
+         <ns0:number>4</ns0:number>
+      </ns0:fibonacci_number>
+   </ns1:Body>
+</SOAP-ENV:Envelope>
+DEBUG:suds.client:headers = {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"fibonacci_number"'}
+DEBUG:suds.transport.http:sending:
+URL: http://localhost:2452/
+HEADERS: {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"fibonacci_number"', 'Content-type': 'text/xml; charset=utf-8', 'Soapaction': b'"fibonacci_number"'}
+MESSAGE:
+<?xml version="1.0" encoding="UTF-8"?><SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="ds_examples.soap.hello" xmlns:ns1="http://schemas.xmlsoap.org/soap/envelope/"><SOAP-ENV:Header/><ns1:Body><ns0:fibonacci_number><ns0:number>4</ns0:number></ns0:fibonacci_number></ns1:Body></SOAP-ENV:Envelope>
+DEBUG:suds.transport.http:received:
+CODE: 200
+HEADERS: Date: Wed, 22 Mar 2023 13:14:28 GMT
+Server: WSGIServer/0.2 CPython/3.11.0
+Content-Type: text/xml; charset=utf-8
+Content-Length: 327
+
+
+MESSAGE:
+<?xml version='1.0' encoding='UTF-8'?>
+<soap11env:Envelope xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="ds_examples.soap.hello"><soap11env:Body><tns:fibonacci_numberResponse><tns:fibonacci_numberResult>2</tns:fibonacci_numberResult></tns:fibonacci_numberResponse></soap11env:Body></soap11env:Envelope>
+DEBUG:suds.client:Reply HTTP status - 200
+b'<?xml version=\'1.0\' encoding=\'UTF-8\'?>\n<soap11env:Envelope xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="ds_examples.soap.hello"><soap11env:Body><tns:fibonacci_numberResponse><tns:fibonacci_numberResult>2</tns:fibonacci_numberResult></tns:fibonacci_numberResponse></soap11env:Body></soap11env:Envelope>'
+DEBUG:suds.transport.http:opening (http://localhost:2452/?wsdl)
+DEBUG:suds.client:sending to (http://localhost:2452/)
+message:
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="ds_examples.soap.hello">
+   <SOAP-ENV:Header/>
+   <ns0:Body>
+      <ns1:fibonacci_number>
+         <ns1:number>5</ns1:number>
+      </ns1:fibonacci_number>
+   </ns0:Body>
+</SOAP-ENV:Envelope>
+DEBUG:suds.client:headers = {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"fibonacci_number"'}
+DEBUG:suds.transport.http:sending:
+URL: http://localhost:2452/
+HEADERS: {'Content-Type': 'text/xml; charset=utf-8', 'SOAPAction': b'"fibonacci_number"', 'Content-type': 'text/xml; charset=utf-8', 'Soapaction': b'"fibonacci_number"'}
+MESSAGE:
+<?xml version="1.0" encoding="UTF-8"?><SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="ds_examples.soap.hello"><SOAP-ENV:Header/><ns0:Body><ns1:fibonacci_number><ns1:number>5</ns1:number></ns1:fibonacci_number></ns0:Body></SOAP-ENV:Envelope>
+DEBUG:suds.transport.http:received:
+CODE: 200
+HEADERS: Date: Wed, 22 Mar 2023 13:15:10 GMT
+Server: WSGIServer/0.2 CPython/3.11.0
+Content-Type: text/xml; charset=utf-8
+Content-Length: 341
+
+
+MESSAGE:
+<?xml version='1.0' encoding='UTF-8'?>
+<soap11env:Envelope xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="ds_examples.soap.hello"><soap11env:Body><tns:fibonacci_numberResponse><tns:fibonacci_numberResult>[0, 1, 1, 2, 3]</tns:fibonacci_numberResult></tns:fibonacci_numberResponse></soap11env:Body></soap11env:Envelope>
+DEBUG:suds.client:Reply HTTP status - 200
+b'<?xml version=\'1.0\' encoding=\'UTF-8\'?>\n<soap11env:Envelope xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="ds_examples.soap.hello"><soap11env:Body><tns:fibonacci_numberResponse><tns:fibonacci_numberResult>[0, 1, 1, 2, 3]</tns:fibonacci_numberResult></tns:fibonacci_numberResponse></soap11env:Body></soap11env:Envelope>'
