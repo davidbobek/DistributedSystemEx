@@ -60,7 +60,7 @@ def get_user(user, username):
     }
     response = requests.get(url, params=params)
     if response.status_code == 200:
-        print("getting users from server")
+        print("Getting users from server")
         data = response.json()
         print(data)
 
