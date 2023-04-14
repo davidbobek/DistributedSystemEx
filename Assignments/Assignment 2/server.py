@@ -52,39 +52,76 @@ tokens = {}
 
 # create a user with a role and a token
 @app.post("/auth/user/")
-async def create_user(user_role, username, password, new_role, token):
-
+async def create_user(username, password, new_role, token):
     tokens[username] = token
-    if validate_token(token, "username"):
+    if validate_token(token, username):
+        print(usernames)
         if username not in usernames:
-            if user_role == "1":
-                print("Token is valid \n")
-                user = User(username=username, password=password)
-                user.role = new_role
-                users.append(user)
-                usernames.append(username)
-                return "User created"
-            else:
-                return "User is not an administrator"
+            
+            print("Token is valid \n")
+            user = User(username=username, password=password)
+            user.role = new_role
+            users.append(user)
+            usernames.append(username)
+            return 200
+           
         else:
-            return "User already exists"
+            return "User already exists" , 409
     else:
-        return "Token is invalid"
+        return "Token is invalid", 498
 
 
 # get the user role by username
 @app.get("/auth/get_users/")
-async def get_user(user_role, username,token):
-    if validate_token(token, "username"):
-        if username in usernames:
-            if user_role == "1":
-                print("Token is valid \n")
-                # return role of the user by username
-                print("users", users)
-                return [user.role for user in users if user.username == username]
-            else:
-                return "User is not an administrator"
+async def get_user(domestic_username,token,target_username):
+    if validate_token(token,domestic_username):
+        if target_username in usernames:
+            for person in users:
+                if person.username == target_username:
+                    return [target_username,person.role], 200
         else:
-            return "User does not exist"
+            return "User does not exist", 404
     else:
-        return "Token is invalid"
+        #invalid token = 498
+        return "Invalid token", 498
+    
+        
+# delete a user by username
+@app.delete("/auth/delete_user/")
+async def delete_user(username, token):
+    if validate_token(token,username):
+        # check if user exists
+        if username in usernames:
+            # delete user
+            for user in users:
+                if user.username == username:
+                    users.remove(user)
+                    usernames.remove(username)
+                    return [username , "User deleted"], 200
+        else:
+            return "User does not exist", 404
+    else:
+        return "Invalid token", 498
+
+
+# get all users
+@app.get("/auth/get_all_users/")
+async def get_all_users(token,username):
+    output = []
+    print(usernames)
+    if validate_token(token,username):
+        print("Token is valid \n")
+        print("users", users)
+        for person in users:
+            output.append(person.username)
+        return output, 200
+    else:
+        #invalid token = 498
+        return "Invalid token", 498
+    
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(app)
+
+    

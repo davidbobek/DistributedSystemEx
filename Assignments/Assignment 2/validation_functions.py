@@ -19,3 +19,4 @@ def validate_token(token, valid_username: str):
             return False
     except:
         return False
+
