@@ -23,6 +23,9 @@ class User:
         self.password = password
         self.role = None
         self.token = None
+    
+    def __str__(self):
+        return f"{self.username} {self.password} {self.role}"
 
 
 def initialize_user(user_name, password, role):

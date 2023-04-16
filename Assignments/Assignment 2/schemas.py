@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from enum import Enum
+from datetime import datetime
 
 class Role(str, Enum):
     Administrator = "1"
@@ -27,3 +28,25 @@ class Token(BaseModel):
 class DeleteRequest(BaseModel):
     token: str
     username: str
+    
+class Status(str, Enum):
+    Submitted = "1"
+    InProgress = "2"
+    Completed = "3"
+    
+    def __str__(self):
+        return f"{self.value}"
+
+
+class Job(BaseModel):
+    timestamp: datetime
+    status: Status
+    date_range: str
+    assets: list
+    
+class Result(BaseModel):
+    timestamp: datetime
+    status: Status
+    date_range: str
+    assets: list
+    result: str
