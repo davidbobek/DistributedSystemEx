@@ -2,9 +2,19 @@ from fastapi import FastAPI, HTTPException
 from schemas import User, Role, Login, ChangeRole
 from auth import AuthHandler
 from users import db, get_role, get_user
-
+from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 authHandler = AuthHandler()
+# allow all origins
+origins = ["*"]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 
 # this is a test
@@ -12,6 +22,11 @@ authHandler = AuthHandler()
 async def get_users():
     return db
 
+@app.get("/auth/role/")
+async def get_role(token: str) -> Role:
+    user = authHandler.decode_token(token)  # decode the token and get the dict with data
+    role = get_role(user)  # get the role from the database
+    return role  # return the role
 
 @app.post("/auth/login/")
 async def login(auth_details: Login) -> dict:

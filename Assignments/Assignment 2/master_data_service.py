@@ -6,12 +6,24 @@ import datetime
 from users import get_role
 from schemas import Job, Result, JobSubmit, ResultSubmit, Status
 from auth import AuthHandler
+from fastapi.middleware.cors import CORSMiddleware
+# import requests
+
 
 app = FastAPI()
 security = HTTPBearer()
 authHandler = AuthHandler()
 
 allowed_roles = ["Administrator", "Manager"]
+origins = ["*"]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 
     
@@ -69,6 +81,7 @@ async def create_job(token:str, job:JobSubmit) -> str:
     Returns:
         str: job id of the submitted job
     """
+    # role = requests.get(url="")
     username = authHandler.decode_token(token)
     if get_role(username) in allowed_roles:
         for a in job.assets:
@@ -107,8 +120,8 @@ async def get_jobs(token:str) -> list:
         raise HTTPException(status_code=403, detail="Not allowed")
     
 
-@app.put("/master/job/<job_id>")
-async def update_result(token:str, job_id:str) -> int:
+@app.put("/master/job/{job_id}/")
+async def update_job(token:str, job_id:str) -> int:
     """
 
 
@@ -125,6 +138,7 @@ async def update_result(token:str, job_id:str) -> int:
         int: _description_
     """
     username = authHandler.decode_token(token)
+    print(job_id)
     if get_role(username) in allowed_roles:
         jobs = get_data_from_file("jobs.json")
         if not jobs:
