@@ -14,8 +14,21 @@ async def get_users():
 
 
 @app.post("/auth/login/")
-async def login(auth_details: Login):
-    global global_token
+async def login(auth_details: Login) -> dict:
+    """
+    login function, returns a token if the user exists and the password is correct
+    the token is used to access the other endpoints
+
+    Args:
+        auth_details (Login): authentication details(username and password)
+
+    Raises:
+        HTTPException: if the user doesn't exist
+        HTTPException: if the password is incorrect
+
+    Returns:
+        dict: token
+    """
     user = get_user(auth_details.username)  # get the user from the database
     if user is None: # if the user doesn't exist, raise an error
         raise HTTPException(status_code=401, detail='Invalid username')
@@ -27,6 +40,20 @@ async def login(auth_details: Login):
     
 @app.post("/auth/manage/")
 async def create_user(token:str, user: User) -> int:  
+    """
+    Creates a new user and returns the success code.
+
+    Args:
+        token (str): authentication token
+        user (User): user data to be added
+
+    Raises:
+        HTTPException: username taken
+        HTTPException: user doesn't have admin role
+
+    Returns:
+        int: success code
+    """
     admin = authHandler.decode_token(token)  # decode the token and get the dict with data
     admin = get_user(admin)  # get the user from the database
     if admin.role == Role.Administrator:  # check the role
@@ -40,6 +67,20 @@ async def create_user(token:str, user: User) -> int:
 
 @app.put("/auth/manage/")   
 async def change_role(token:str, user: ChangeRole) -> int:
+    """
+    Changes the role of a user and returns the success code.
+    
+    Args:
+        token (str): authentication token
+        user (ChangeRole): user data to be changed( username and role)
+
+    Raises:
+        HTTPException: user not found
+        HTTPException: request user doesn't have admin role
+
+    Returns:
+        int: success code
+    """
     request = authHandler.decode_token(token)
     admin = get_user(request)
     if admin.role == Role.Administrator:
@@ -54,6 +95,20 @@ async def change_role(token:str, user: ChangeRole) -> int:
  
 @app.delete("/auth/manage/")
 async def delete_user(token:str, username:str) -> int:
+    """
+    Deletes a user and returns the success code.
+
+    Args:
+        token (str): authentication token
+        username (str): username of the user to be deleted
+
+    Raises:
+        HTTPException: user not found
+        HTTPException: doesn't have admin role
+
+    Returns:
+        int: success code
+    """
     admin = authHandler.decode_token(token)
     admin = get_user(admin)
     if admin.role == Role.Administrator:
