@@ -3,9 +3,9 @@ from enum import Enum
 from datetime import datetime
 
 class Role(str, Enum):
-    Administrator = "1"
-    Secretary = "2"
-    Manager = "3"
+    Administrator = "Administrator"
+    Secretary = "Secretary"
+    Manager = "Manager"
     
     def __str__(self):
         return f"{self.value}"
@@ -21,32 +21,53 @@ class User(BaseModel):
 class Login(BaseModel):
     username: str
     password: str
-    
-class Token(BaseModel):
-    token: str
-    
-class DeleteRequest(BaseModel):
-    token: str
+
+    def __str__(self):
+        return f"{self.username} {self.password}"
+
+class ChangeRole(BaseModel):
     username: str
+    role: Role
+
     
 class Status(str, Enum):
-    Submitted = "1"
-    InProgress = "2"
-    Completed = "3"
+    Submitted = "Submitted"
+    Processing = "Processing"
+    Done = "Done"
     
     def __str__(self):
         return f"{self.value}"
 
-
 class Job(BaseModel):
-    timestamp: datetime
+    id: str
+    user: str
+    timestamp: str
     status: Status
     date_range: str
-    assets: list
+    assets: list[int]
     
-class Result(BaseModel):
-    timestamp: datetime
-    status: Status
+    def __str__(self):
+        return f"{self.timestamp} {self.status} {self.date_range} {self.assets}"
+
+
+class JobSubmit(BaseModel):
     date_range: str
-    assets: list
-    result: str
+    assets: list[int]
+
+    def __str__(self):
+        return f"{self.date_range} {self.assets}"
+    
+class ResultSubmit(BaseModel):
+    job_id: str
+    assets: list[float]
+
+    def __str__(self):
+        return f"{self.job_id} {self.assets}"
+
+class Result(BaseModel):
+    job_id: str
+    timestamp: str
+    assets: list[float]
+    
+    def __str__(self):
+        return f"{self.job_id} {self.timestamp} {self.assets}"
