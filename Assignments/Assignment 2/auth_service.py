@@ -3,6 +3,7 @@ from schemas import User, Role, Login, ChangeRole
 from auth import AuthHandler
 from users import db, get_role, get_user
 from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI()
 authHandler = AuthHandler()
 # allow all origins
@@ -16,17 +17,20 @@ app.add_middleware(
 )
 
 
-
 # this is a test
 @app.get("/auth/users/")
 async def get_users():
     return db
 
+
 @app.get("/auth/role/")
-async def get_role(token: str) -> Role:
-    user = authHandler.decode_token(token)  # decode the token and get the dict with data
+async def return_role(token: str) -> tuple:
+    user = authHandler.decode_token(
+        token
+    )  # decode the token and get the dict with data
     role = get_role(user)  # get the role from the database
-    return role  # return the role
+    return user, role  # return the role
+
 
 @app.post("/auth/login/")
 async def login(auth_details: Login) -> dict:
@@ -45,16 +49,20 @@ async def login(auth_details: Login) -> dict:
         dict: token
     """
     user = get_user(auth_details.username)  # get the user from the database
-    if user is None: # if the user doesn't exist, raise an error
-        raise HTTPException(status_code=401, detail='Invalid username')
-    if not authHandler.verify_password(auth_details.password, user.password):  # if the password is incorrect, raise an error
-        raise HTTPException(status_code=401, detail='Invalid password')
-    token = authHandler.encode_token(user.username)  # if the user exists and the password is correct, generate a token
-    return {'token': token }  # return the token
-    
-    
+    if user is None:  # if the user doesn't exist, raise an error
+        raise HTTPException(status_code=401, detail="Invalid username")
+    if not authHandler.verify_password(
+        auth_details.password, user.password
+    ):  # if the password is incorrect, raise an error
+        raise HTTPException(status_code=401, detail="Invalid password")
+    token = authHandler.encode_token(
+        user.username
+    )  # if the user exists and the password is correct, generate a token
+    return {"token": token}  # return the token
+
+
 @app.post("/auth/manage/")
-async def create_user(token:str, user: User) -> int:  
+async def create_user(token: str, user: User) -> int:
     """
     Creates a new user and returns the success code.
 
@@ -69,22 +77,34 @@ async def create_user(token:str, user: User) -> int:
     Returns:
         int: success code
     """
-    admin = authHandler.decode_token(token)  # decode the token and get the dict with data
+    admin = authHandler.decode_token(
+        token
+    )  # decode the token and get the dict with data
     admin = get_user(admin)  # get the user from the database
     if admin.role == Role.Administrator:  # check the role
-        if any(x.username == user.username for x in db):  # check the existance of the username in the database
-            raise HTTPException(status_code=409, detail="Username taken")  # if the username exists, raise an error
-        db.append(User(username=user.username, password=authHandler.get_password_hash(user.password), role=user.role))  # if the username doesn't exist, add the user to the database
+        if any(
+            x.username == user.username for x in db
+        ):  # check the existance of the username in the database
+            raise HTTPException(
+                status_code=409, detail="Username taken"
+            )  # if the username exists, raise an error
+        db.append(
+            User(
+                username=user.username,
+                password=authHandler.get_password_hash(user.password),
+                role=user.role,
+            )
+        )  # if the username doesn't exist, add the user to the database
         return 200  # return 200 if the user was added
     else:
         raise HTTPException(status_code=403, detail="Not admin")
 
 
-@app.put("/auth/manage/")   
-async def change_role(token:str, user: ChangeRole) -> int:
+@app.put("/auth/manage/")
+async def change_role(token: str, user: ChangeRole) -> int:
     """
     Changes the role of a user and returns the success code.
-    
+
     Args:
         token (str): authentication token
         user (ChangeRole): user data to be changed( username and role)
@@ -106,10 +126,10 @@ async def change_role(token:str, user: ChangeRole) -> int:
         return 200
     else:
         raise HTTPException(status_code=403, detail="Not admin")
- 
- 
+
+
 @app.delete("/auth/manage/")
-async def delete_user(token:str, username:str) -> int:
+async def delete_user(token: str, username: str) -> int:
     """
     Deletes a user and returns the success code.
 
@@ -138,5 +158,6 @@ async def delete_user(token:str, username:str) -> int:
 
 if __name__ == "__main__":
     import uvicorn
+
     # run on port 8000
     uvicorn.run(app, host="127.0.0.1", port=8000)

@@ -1,13 +1,11 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.security import HTTPBearer
 import json
-import uuid
 import datetime
-from users import get_role
 from schemas import Job, Result, JobSubmit, ResultSubmit, Status
 from auth import AuthHandler
 from fastapi.middleware.cors import CORSMiddleware
-# import requests
+import requests
 
 
 app = FastAPI()
@@ -25,9 +23,7 @@ app.add_middleware(
 )
 
 
-
-    
-def check_if_file_exists(filename:str) -> bool:
+def check_if_file_exists(filename: str) -> bool:
     """
     Check if the file exists
 
@@ -40,10 +36,11 @@ def check_if_file_exists(filename:str) -> bool:
     try:  # try to open file
         with open(filename, "r") as f:
             return True
-    except FileNotFoundError: # if file does not exist
+    except FileNotFoundError:  # if file does not exist
         return False
 
-def get_data_from_file(filename:str) -> list:
+
+def get_data_from_file(filename: str) -> list:
     """
     Opens the database file and returns the data.
     If the database file does not exist, it returns an empty list.
@@ -59,17 +56,28 @@ def get_data_from_file(filename:str) -> list:
             return json.load(f)  # return data
     else:  # if file does not exist
         return []  # return empty list
-    
-def write_data_to_file(filename:str, data:list) -> None:
+
+
+def write_data_to_file(filename: str, data: list) -> None:
     with open(filename, "w") as f:
         json.dump(data, f)
 
-        
+
+def get_user_role(token: str) -> str:
+    response = requests.get(
+        url="http://localhost:8000/auth/role/?token=" + token
+    ).content
+    response = eval(response.decode("utf-8"))
+    role = response[1]
+    username = response[0]
+    return username, role
+
+
 @app.post("/master/job/")
-async def create_job(token:str, job:JobSubmit) -> str:
+async def create_job(token: str, job: JobSubmit) -> str:
     """
     Creates a new job and returns the job id.
-    
+
     Args:
         token (str): token used for authentication
         job (JobSubmit): job data to be submitted, contains date_range and assets
@@ -81,9 +89,8 @@ async def create_job(token:str, job:JobSubmit) -> str:
     Returns:
         str: job id of the submitted job
     """
-    # role = requests.get(url="")
-    username = authHandler.decode_token(token)
-    if get_role(username) in allowed_roles:
+    username, role = get_user_role(token)
+    if role in allowed_roles:
         for a in job.assets:
             # check if asser > 100 or < 0 and int
             if not isinstance(a, int) or a > 100 or a < 0:
@@ -91,17 +98,25 @@ async def create_job(token:str, job:JobSubmit) -> str:
         timestamp = datetime.datetime.now()
         timestamp = timestamp.strftime("%Y-%m-%d %H:%M:%S")
         data = get_data_from_file("jobs.json")
-        job = Job(id=f"job_{len(data)}", user=username, timestamp=timestamp, status=Status.Submitted, date_range=job.date_range, assets=job.assets)
+        job = Job(
+            id=f"job_{len(data)}",
+            user=username,
+            timestamp=timestamp,
+            status=Status.Submitted,
+            date_range=job.date_range,
+            assets=job.assets,
+        )
         data.append(job.__dict__)
         write_data_to_file("jobs.json", data)
         return job.id
     else:
         raise HTTPException(status_code=403, detail="Not allowed")
-    
+
+
 @app.get("/master/jobs/")
-async def get_jobs(token:str) -> list:
+async def get_jobs(token: str) -> list:
     """
-    Returns a list of all jobs in the database. 
+    Returns a list of all jobs in the database.
     If the database file does not exist, it returns an empty list.
 
     Args:
@@ -113,15 +128,14 @@ async def get_jobs(token:str) -> list:
     Returns:
         list: list of all jobs with folowing attributes: id, user, timestamp, status, date_range, assets
     """
-    username = authHandler.decode_token(token)
-    if get_role(username) in allowed_roles:
+    if get_user_role(token)[1] in allowed_roles:
         return get_data_from_file("jobs.json")
     else:
         raise HTTPException(status_code=403, detail="Not allowed")
-    
+
 
 @app.put("/master/job/{job_id}/")
-async def update_job(token:str, job_id:str) -> int:
+async def update_job(token: str, job_id: str) -> int:
     """
 
 
@@ -137,9 +151,7 @@ async def update_job(token:str, job_id:str) -> int:
     Returns:
         int: _description_
     """
-    username = authHandler.decode_token(token)
-    print(job_id)
-    if get_role(username) in allowed_roles:
+    if get_user_role(token)[1] in allowed_roles:
         jobs = get_data_from_file("jobs.json")
         if not jobs:
             raise HTTPException(status_code=404, detail="Jobs database not found")
@@ -153,9 +165,9 @@ async def update_job(token:str, job_id:str) -> int:
     else:
         raise HTTPException(status_code=403, detail="Not allowed")
 
-    
+
 @app.get("/master/results/")
-async def get_results(token:str) -> list:
+async def get_results(token: str) -> list:
     """
     Returns a list of all results in the database.
     If the database file does not exist, it returns an empty list.
@@ -169,17 +181,17 @@ async def get_results(token:str) -> list:
     Returns:
         list: list of all results with folowing attributes: job_id, timestamp and assets
     """
-    username = authHandler.decode_token(token)
-    if get_role(username) in allowed_roles:
+    # username = authHandler.decode_token(token)
+    if get_user_role(token)[1] in allowed_roles:
         return get_data_from_file("results.json")
     else:
         raise HTTPException(status_code=403, detail="Not allowed")
 
 
 @app.post("/master/result/")
-async def create_result(token:str, result:ResultSubmit) -> str:
+async def create_result(token: str, result: ResultSubmit) -> str:
     """
-    
+
 
     Args:
         token (str): authentication token
@@ -195,19 +207,18 @@ async def create_result(token:str, result:ResultSubmit) -> str:
     Returns:
         str: job id of the finished job
     """
-    username = authHandler.decode_token(token)
-    if get_role(username) in allowed_roles:
+    if get_user_role(token)[1] in allowed_roles:
         data = get_data_from_file("jobs.json")
         job = [job for job in data if job["id"] == result.job_id]
-        if len (job) > 1:
+        if len(job) > 1:
             raise HTTPException(status_code=401, detail="Job already in database")
         job = job[0]
-        assert_len = len(job['assets'])
+        assert_len = len(job["assets"])
         if not job:
             raise HTTPException(status_code=404, detail="Job not found")
         if job["status"] == Status.Done:
             raise HTTPException(status_code=400, detail="Job already done")
-        assert_len = len(job['assets'])
+        assert_len = len(job["assets"])
         if len(result.assets) != assert_len:
             raise HTTPException(status_code=400, detail="Wrong number of assets")
         job["status"] = Status.Done
@@ -225,4 +236,5 @@ async def create_result(token:str, result:ResultSubmit) -> str:
 
 if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run(app, host="127.0.0.1", port=8001)
