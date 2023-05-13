@@ -3,11 +3,11 @@
 # Port number for the message queue service
 port: 7500
 
-# Maximum number of messages per queue
-max_queue_size: 5
-
-# Time in seconds to persist the queues to disk
-persist_interval: 300
+# All the queue data
+queues_file:
+  persist_interval: 30
+  file_path: queues.json
+  max_queue_size: 5
 
 # Path to the directory to store the queue data
 # it is in the same directory

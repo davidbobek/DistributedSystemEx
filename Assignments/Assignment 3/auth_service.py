@@ -3,6 +3,7 @@ from schemas import User, Role, Login, ChangeRole
 from auth import AuthHandler
 from users import db, get_role, get_user
 from fastapi.middleware.cors import CORSMiddleware
+from logging_functionality import write_log, create_log_file
 
 app = FastAPI()
 authHandler = AuthHandler()
@@ -95,6 +96,7 @@ async def create_user(token: str, user: User) -> int:
                 role=user.role,
             )
         )  # if the username doesn't exist, add the user to the database
+        write_log("User added", 200)
         return 200  # return 200 if the user was added
     else:
         raise HTTPException(status_code=403, detail="Not admin")
@@ -123,6 +125,7 @@ async def change_role(token: str, user: ChangeRole) -> int:
         if change is None:
             raise HTTPException(status_code=404, detail="User not found")
         change.role = user.role
+        write_log("Role changed", 200)
         return 200
     else:
         raise HTTPException(status_code=403, detail="Not admin")
@@ -151,6 +154,7 @@ async def delete_user(token: str, username: str) -> int:
         if user is None:
             raise HTTPException(status_code=404, detail="User not found")
         db.remove(user)
+        write_log("User deleted", 200)
         return 200
     else:
         raise HTTPException(status_code=403, detail="Not admin")
@@ -158,6 +162,7 @@ async def delete_user(token: str, username: str) -> int:
 
 if __name__ == "__main__":
     import uvicorn
+    create_log_file()
 
     # run on port 8000
     uvicorn.run(app, host="127.0.0.1", port=8000)

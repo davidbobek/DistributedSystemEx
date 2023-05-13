@@ -11,6 +11,15 @@ class Role(str, Enum):
         return f"{self.value}"
 
 
+class Status(str, Enum):
+    Submitted = "Submitted"
+    Processing = "Processing"
+    Done = "Done"
+
+    def __str__(self):
+        return f"{self.value}"
+
+
 class User(BaseModel):
     username: str
     password: str
@@ -32,25 +41,48 @@ class ChangeRole(BaseModel):
     username: str
     role: Role
 
+    def __str__(self):
+        return f"{self.username} {self.role}"
+
+
+class Job(BaseModel):
+    id: str
+    user: str
+    timestamp: str
+    status: Status
+    date_range: str
+    assets: list[int]
+
+    def __str__(self):
+        return f"{self.timestamp} {self.status} {self.date_range} {self.assets}"
+
+
+class Result(BaseModel):
+    job_id: str
+    timestamp: str
+    assets: list[float]
+
+    def __str__(self):
+        return f"{self.job_id} {self.timestamp} {self.assets}"
+
+
+class Push(BaseModel):  # not sure i need this
+    queue_id: str
+    search_id: str
+
+    def __str__(self):
+        return f"{self.queue_id} {self.search_id}"    
+
 
 class Message(BaseModel):
-    pass
-    # TODO: add fields
+    data: dict
     
-class Queue:
     
-    def __init__(self, max_size:int, queue_id:str) -> None:
-        self.queue = []
-        self.queue_id = queue_id
-        self.max_size = max_size
-    
-    def size(self) -> int:
-        return len(self.queue)
+class Queue(BaseModel):
+    queue_id:str
+    max_size:int
+    queues:list
 
-    def enqueue(self, item:Message) -> bool:
-        self.queue.append(item)
-        return True
-    
-    def dequeue(self) -> bool|Message:
-        return self.queue.pop(0)
+    def __str__(self):
+        return f"{self.queue_id} {self.max_size} {self.queues}"
     
