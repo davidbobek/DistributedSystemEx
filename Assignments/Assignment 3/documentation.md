@@ -8,6 +8,8 @@
     * username: admin
     * password: admin
 * afterwards you can use the token to access all the other services
+* to access auth service you can go to http://localhost:8000/docs . There are all the API calls
+* to access MQ service you can go to http://localhost:7500/docs . There are all the API calls
 
 ## Authentication
 * For authentificationwe are using the same auth server as for assignment 2.
