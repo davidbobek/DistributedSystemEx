@@ -29,10 +29,12 @@
 # EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-
+#run with {mpiexec -n 3 python mpi_example.py}
+#3 is the number of processes
 import json
 from mpi4py import MPI
 
+#comm is a communicator object that represents a group of processes
 comm = MPI.COMM_WORLD
 
 #rank is a unique identifier for each process
@@ -47,14 +49,18 @@ else:
 
 
 # Scatter parameters arrays
+# scatter distributes an array of tasks to all processes in comm (tasks is a list of parameters) if comm.rank == 0
 unit = comm.scatter(tasks, root=0)
 
+#loading the json string into a python dictionary
 p = json.loads(unit)
 print(f'[{comm.rank}]: parameters {p}')
 
+# do some calculation adding the parameters and multiplying by the third parameter
 calc = (p['parameter1'] + p['parameter2']) * p['parameter3']
 
-# gather results
+# gather results from all processes in comm
+# sending my calc result to the root process
 result = comm.gather(calc, root=0)
 
 if comm.rank == 0:
