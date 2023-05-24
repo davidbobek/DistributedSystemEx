@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 import yaml
 import requests
 from schemas import Message, Queue
@@ -18,6 +19,15 @@ qs = QueueSaver()
 
 
 app = FastAPI()
+origins = ["*"]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["Options", "Get", "Post", "Put", "Delete"],
+    allow_headers=["*"],
+)
+
 
 
 def get_user_role(token: str) -> list[str]:
@@ -82,7 +92,7 @@ def get_queue_size(token: str, queue_id: str) -> str:
 
 
 @app.post("/queue/")
-def create_queue(token: str, queue_id: str):
+def create_queue(token: str, queue_id: str) -> Queue:
     user, role = get_user_role(token)
     if role not in creation_permission:
         write_log(f"User {user} tried to create a queue", 403)
@@ -104,7 +114,7 @@ def create_queue(token: str, queue_id: str):
 
 
 @app.delete("/queue/{queue_id}/delete")
-def delete_q(token: str, queue_id: str):
+def delete_q(token: str, queue_id: str) -> dict:
     user, role = get_user_role(token)
     if role not in creation_permission:
         write_log(f"User {user} tried to delete a queue", 403)
