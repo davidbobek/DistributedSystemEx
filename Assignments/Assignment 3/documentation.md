@@ -1,4 +1,5 @@
 # MQ service
+Scripnic Dinu and David Bobek engineering
 
 
 ## Run
@@ -10,6 +11,8 @@
 * afterwards you can use the token to access all the other services
 * to access auth service you can go to http://localhost:8000/docs . There are all the API calls
 * to access MQ service you can go to http://localhost:7500/docs . There are all the API calls
+* Also we provided a test script for the MQ service. You can run it with the following command:
+    * python3 proof.py
 
 ## Authentication
 * For authentificationwe are using the same auth server as for assignment 2.
